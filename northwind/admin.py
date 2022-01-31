@@ -13,4 +13,5 @@ admin.site.register(Shipper)
 admin.site.register(Supplier)
 admin.site.register(Territory)
 admin.site.register(UsState)
+admin.site.register(Product)
 

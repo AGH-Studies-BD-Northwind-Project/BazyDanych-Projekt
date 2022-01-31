@@ -1,5 +1,5 @@
 """
-ASGI config for Projekt_Final project.
+ASGI config for BD_Northwind_Django project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Projekt_Final.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'BD_Northwind_Django.settings')
 
 application = get_asgi_application()

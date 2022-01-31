@@ -10,6 +10,13 @@ class Category(models.Model):
         db_table = 'categories'
         verbose_name_plural = "categories"
 
+class CustomerDemographic(models.Model):
+    customer_type_id = models.CharField(primary_key=True, max_length=30)
+    customer_desc = models.TextField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'customer_demographics'
+
 class Customer(models.Model):
     customer_id = models.CharField(primary_key=True, max_length=30)
     company_name = models.CharField(max_length=40)
@@ -22,18 +29,11 @@ class Customer(models.Model):
     country = models.CharField(max_length=15, blank=True, null=True)
     phone = models.CharField(max_length=24, blank=True, null=True)
     fax = models.CharField(max_length=24, blank=True, null=True)
-
-    class Meta:
-        db_table = 'customers'
-
-class CustomerDemographic(models.Model):
-    customer_type_id = models.CharField(primary_key=True, max_length=30)
-    customer_desc = models.TextField(blank=True, null=True)
-    customers = models.ManyToManyField(Customer)
+    customer_demographics = models.ManyToManyField(CustomerDemographic)
     #obsluzyc uswanie
 
     class Meta:
-        db_table = 'customer_demographics'
+        db_table = 'customers'
 
 
 class Region(models.Model):

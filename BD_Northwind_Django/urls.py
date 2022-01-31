@@ -1,4 +1,4 @@
-"""Projekt_Final URL Configuration
+"""BD_Northwind_Django URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
