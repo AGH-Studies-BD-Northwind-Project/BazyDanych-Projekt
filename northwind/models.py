@@ -9,6 +9,8 @@ class Category(models.Model):
     class Meta:
         db_table = 'categories'
         verbose_name_plural = "categories"
+    def __str__(self):
+        return f"{self.category_name}"
 
 class CustomerDemographic(models.Model):
     customer_type_id = models.CharField(primary_key=True, max_length=30)
@@ -118,9 +120,14 @@ class Product(models.Model):
     units_on_order = models.SmallIntegerField(blank=True, null=True)
     reorder_level = models.SmallIntegerField(blank=True, null=True)
     discontinued = models.IntegerField()
+    picture = models.ImageField(blank=True, null=True)
 
     class Meta:
         db_table = 'products'
+
+    def __str__(self):
+        return f"{self.product_name}, from category: {self.category.category_name}"
+
 
 class Shipper(models.Model):
     shipper_id = models.SmallIntegerField(primary_key=True)
@@ -146,6 +153,9 @@ class Supplier(models.Model):
 
     class Meta:
         db_table = 'suppliers'
+
+    def __str__(self):
+        return f"{self.company_name}"
 
 class UsState(models.Model):
     state_id = models.SmallIntegerField(primary_key=True)
