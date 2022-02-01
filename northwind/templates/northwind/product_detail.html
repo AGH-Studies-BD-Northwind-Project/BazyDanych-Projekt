@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product details</title>
+</head>
+<body>
+<h1>{{ product.product_name }}</h1>
+<p>
+    Product name: {{product.product_name}}<br>
+    Supplier: {{ product.supplier.company_name}}<br>
+    Category: {{product.category.category_name}}<br>
+    Quantity per unit: {{ product.quantity_per_unit }}<br>
+    Price: {{ product.unit_price }}<br>
+    Discount: {{ product.discontinued }}<br>
+    Picture: {{ product.picture }}<br>
+</p>
+
+</body>
+</html>

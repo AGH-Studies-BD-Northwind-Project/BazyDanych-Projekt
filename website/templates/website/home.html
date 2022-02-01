@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage - Northwind</title>
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+</head>
+<body>
+    <h1>Welcome</h1>
+    <a href="{% url 'products' %}">Products</a>
+</body>
+</html>

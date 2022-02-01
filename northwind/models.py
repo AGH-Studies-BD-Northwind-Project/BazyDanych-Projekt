@@ -114,12 +114,12 @@ class Product(models.Model):
     product_name = models.CharField(max_length=40)
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE, blank=True, null=True)
     category = models.ForeignKey('Category', models.SET_NULL, blank=True, null=True)
-    quantity_per_unit = models.CharField(max_length=20, blank=True, null=True)
+    quantity_per_unit = models.CharField(max_length=20, blank=True, null=True, default=1)
     unit_price = models.FloatField(blank=True, null=True)
-    units_in_stock = models.SmallIntegerField(blank=True, null=True)
-    units_on_order = models.SmallIntegerField(blank=True, null=True)
-    reorder_level = models.SmallIntegerField(blank=True, null=True)
-    discontinued = models.IntegerField()
+    units_in_stock = models.SmallIntegerField(blank=True, null=True, default=0)
+    units_on_order = models.SmallIntegerField(blank=True, null=True, default=0)
+    reorder_level = models.SmallIntegerField(blank=True, null=True, default=0)
+    discontinued = models.IntegerField( default=0)
     picture = models.ImageField(blank=True, null=True)
 
     class Meta:
