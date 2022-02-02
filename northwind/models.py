@@ -1,7 +1,7 @@
 from django.db import models
 
 class Category(models.Model):
-    category_id = models.SmallIntegerField(primary_key=True)
+    category_id = models.AutoField(primary_key=True)
     category_name = models.CharField(max_length=15)
     description = models.TextField(blank=True, null=True)
     picture = models.BinaryField(blank=True, null=True)
@@ -39,7 +39,7 @@ class Customer(models.Model):
 
 
 class Region(models.Model):
-    region_id = models.SmallIntegerField(primary_key=True)
+    region_id = models.AutoField(primary_key=True)
     region_description = models.CharField(max_length=30)
 
     class Meta:
@@ -56,7 +56,7 @@ class Territory(models.Model):
         verbose_name_plural = "territories"
 
 class Employee(models.Model):
-    employee_id = models.SmallIntegerField(primary_key=True)
+    employee_id = models.AutoField(primary_key=True)
     last_name = models.CharField(max_length=20)
     first_name = models.CharField(max_length=10)
     title = models.CharField(max_length=30, blank=True, null=True)
@@ -91,7 +91,7 @@ class OrderDetail(models.Model):
         unique_together = (('order', 'product'),)
 
 class Order(models.Model):
-    order_id = models.SmallIntegerField(primary_key=True)
+    order_id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
     employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, blank=True, null=True)
     order_date = models.DateField(blank=True, null=True)
@@ -110,7 +110,7 @@ class Order(models.Model):
         db_table = 'orders'
 
 class Product(models.Model):
-    product_id = models.SmallIntegerField(primary_key=True)
+    product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=40)
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE, blank=True, null=True)
     category = models.ForeignKey('Category', models.SET_NULL, blank=True, null=True)
@@ -126,11 +126,12 @@ class Product(models.Model):
         db_table = 'products'
 
     def __str__(self):
-        return f"{self.product_name}, from category: {self.category.category_name}"
+        return f"{self.product_name}"
+        #, from category: {self.category.category_name}"
 
 
 class Shipper(models.Model):
-    shipper_id = models.SmallIntegerField(primary_key=True)
+    shipper_id = models.AutoField(primary_key=True)
     company_name = models.CharField(max_length=40)
     phone = models.CharField(max_length=24, blank=True, null=True)
 
@@ -138,7 +139,7 @@ class Shipper(models.Model):
         db_table = 'shippers'
 
 class Supplier(models.Model):
-    supplier_id = models.SmallIntegerField(primary_key=True)
+    supplier_id = models.AutoField(primary_key=True)
     company_name = models.CharField(max_length=40)
     contact_name = models.CharField(max_length=30, blank=True, null=True)
     contact_title = models.CharField(max_length=30, blank=True, null=True)
@@ -158,7 +159,7 @@ class Supplier(models.Model):
         return f"{self.company_name}"
 
 class UsState(models.Model):
-    state_id = models.SmallIntegerField(primary_key=True)
+    state_id = models.AutoField(primary_key=True)
     state_name = models.CharField(max_length=100, blank=True, null=True)
     state_abbr = models.CharField(max_length=2, blank=True, null=True)
     state_region = models.CharField(max_length=50, blank=True, null=True)
