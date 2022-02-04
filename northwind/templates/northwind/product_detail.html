@@ -1,20 +1,48 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Product details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<h1>{{ product.product_name }}</h1>
-<p>
-    Product name: {{product.product_name}}<br>
-    Supplier: {{ product.supplier.company_name}}<br>
-    Category: {{product.category.category_name}}<br>
-    Quantity per unit: {{ product.quantity_per_unit }}<br>
-    Price: {{ product.unit_price }}<br>
-    Discount: {{ product.discontinued }}<br>
-    Picture: {{ product.picture }}<br>
-</p>
-
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#55FF33;">
+    <a href="{% url 'home' %}" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Northwind App</a>
+    <a href="{% url 'products' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Return to Products</a>
+</nav>
+<br>
+    <center>
+    <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Details of {{ product.product_name }}</h1>
+        <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Units in stock</th>
+                <th scope="col">Supplier</th>
+                <th scope="col">Discontinued</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tr>
+                <td>{{ product.product_id }}</td>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.category.category_name }}</td>
+                <td>{{ product.unit_price }}</td>
+                <td>{{ product.units_in_stock }}</td>
+                <td>{{ product.supplier.company_name }}</td>
+                <td>{{ product.discontinued }}</td>
+            <td>
+                <a class="btn btn-warning" href={% url 'edit-product' product.product_id %}>edit</a>
+                <a class="btn btn-danger" href={% url 'delete-product' product.product_id %}>delete</a>
+            </td>
+        </tr>
+  </tbody>
+        </table>
+    </center>
 </body>
 </html>

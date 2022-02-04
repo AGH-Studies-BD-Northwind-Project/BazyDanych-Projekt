@@ -1,11 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
-from .forms import ProductCreate
+from .forms import ProductCreate, SubmitSearchForm
 from django.http import HttpResponse
 
 def products(request):
-    products = Product.objects.all()
-    return render(request, 'northwind/product_list.html', {'products': products})
+    form = SubmitSearchForm(request.GET)
+
+    data = None
+    if form.is_valid():
+        data = form.cleaned_data
+
+    if data is not None:
+        products = Product.objects.filter(product_name__contains=data['name']).order_by('product_id')
+    else:
+        products = Product.objects.all().order_by('product_id')
+
+    context = {
+        'form': form,
+        'products': products
+    }
+    return render(request, 'northwind/product_list.html', context)
 
 def deatil_product(request, id):
     product = get_object_or_404(Product, pk=id)

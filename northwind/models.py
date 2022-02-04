@@ -1,4 +1,5 @@
-from django.db import models
+from django.db import models, connection
+
 
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
@@ -9,6 +10,7 @@ class Category(models.Model):
     class Meta:
         db_table = 'categories'
         verbose_name_plural = "categories"
+
     def __str__(self):
         return f"{self.category_name}"
 
@@ -32,7 +34,6 @@ class Customer(models.Model):
     phone = models.CharField(max_length=24, blank=True, null=True)
     fax = models.CharField(max_length=24, blank=True, null=True)
     customer_demographics = models.ManyToManyField(CustomerDemographic)
-    #obsluzyc uswanie
 
     class Meta:
         db_table = 'customers'
@@ -79,7 +80,11 @@ class Employee(models.Model):
     class Meta:
         db_table = 'employees'
 
+    def __str__(self):
+        return self.title + ' ' + self.firstname + ' ' + self.lastname
+
 class OrderDetail(models.Model):
+    order_detail_id = models.AutoField(primary_key=True)
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     product = models.ForeignKey('Product', models.SET_NULL, null=True)
     unit_price = models.FloatField()
@@ -127,7 +132,6 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.product_name}"
-        #, from category: {self.category.category_name}"
 
 
 class Shipper(models.Model):
@@ -137,6 +141,9 @@ class Shipper(models.Model):
 
     class Meta:
         db_table = 'shippers'
+
+    def __str__(self):
+        return self.companyname
 
 class Supplier(models.Model):
     supplier_id = models.AutoField(primary_key=True)

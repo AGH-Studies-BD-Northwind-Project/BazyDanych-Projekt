@@ -10,11 +10,16 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 <body style="background-color:#4DB6AC;">
 <nav class="navbar navbar-light" style="background-color:#55FF33;">
     <a href="{% url 'home' %}" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Northwind App</a>
-    <a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Admin</a>
-    <a href="{% url 'upload-product' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Upload Products</a>
+    <a href="{% url 'upload-product' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Add Products</a>
 </nav>
 <br>
 {% block content %}
+    <center>
+    <form>
+        <div class="form-group col-md-11">{{ form.name }}</div>
+        <button type="submit" class="btn btn-primary col-md-1">Search</button>
+    </form>
+    </center>
 <div class="card-columns">
     {% for product in products %}
     <div class="card" style="width: 30rem;">
