@@ -13,7 +13,6 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
     <a href="{% url 'products' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Return to Products</a>
 </nav>
 <br>
-{% block content %}
     <center>
     <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Upload Products</h1>
     <form method = 'POST' enctype="multipart/form-data">
@@ -29,6 +28,5 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <button type="submit" class="btn btn-lg btn-warning">Submit</button>
     </form>
     </center>
-{% endblock %}
 </body>
 </html>

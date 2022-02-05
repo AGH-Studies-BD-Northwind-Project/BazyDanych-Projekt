@@ -4,10 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Homepage - Northwind</title>
-    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-    <h1>Welcome</h1>
-    <a href="{% url 'products' %}">Products</a>
+<center>
+<h1 class="display-3" style="background-color:#cb6161;color:#FFFF99;">Implementation of Northwind in Django for studies</h1>
+</center>
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#55FF33;">
+    <a href="{% url 'products' %}" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Products</a>
+    <a href="{% url 'orders' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Orders</a>
+    <a href="{% url 'reports' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Reports</a>
+    <a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Admin</a>
+    <a href="{% url 'about' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">About</a>
+</nav>
 </body>
 </html>
+

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'northwind',
+    'orders',
+    'reports',
 ]
 
 MIDDLEWARE = [
