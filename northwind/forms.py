@@ -8,7 +8,7 @@ class ProductCreate(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['product_id', 'product_name', 'supplier', 'category', 'quantity_per_unit', 'unit_price',
-                  'units_in_stock', 'units_on_order', 'reorder_level', 'picture']
+                  'units_in_stock', 'units_on_order', 'reorder_level', 'discontinued', 'picture']
         widgets = {
             'unit_price': NumberInput(attrs={"type": "number", "min": "0"}),
             'units_in_stock': NumberInput(attrs={"type": "number", "min": "0"}),

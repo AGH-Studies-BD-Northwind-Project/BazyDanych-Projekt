@@ -9,7 +9,3 @@ urlpatterns = [
     path('delete/<int:id>', views.delete_product, name = 'delete-product'),
     path('detail/<int:id>', views.deatil_product, name = 'detail-product'),
 ]
-
-if DEBUG:
-    urlpatterns += static(STATIC_URL, document_root = STATIC_ROOT)
-    urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)

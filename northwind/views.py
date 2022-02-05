@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import ProductCreate, SubmitSearchForm
-from django.http import HttpResponse
 
 def products(request):
     form = SubmitSearchForm(request.GET)
@@ -41,7 +40,7 @@ def update_product(request, id):
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         return redirect('products')
-    product_form = ProductCreate(request.POST or None, instance=product)
+    product_form = ProductCreate(request.POST or None, request.FILES or None, instance=product)
     if product_form.is_valid():
        product_form.save()
        return redirect('products')

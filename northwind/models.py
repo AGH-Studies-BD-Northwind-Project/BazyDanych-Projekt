@@ -84,7 +84,7 @@ class Employee(models.Model):
         return self.title + ' ' + self.firstname + ' ' + self.lastname
 
 class OrderDetail(models.Model):
-    order_detail_id = models.AutoField(primary_key=True)
+   # order_detail_id = models.AutoField(primary_key=True)
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     product = models.ForeignKey('Product', models.SET_NULL, null=True)
     unit_price = models.FloatField()
@@ -117,7 +117,7 @@ class Order(models.Model):
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=40)
-    supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE, blank=True, null=True)
+    supplier = models.ForeignKey('Supplier', models.SET_NULL, blank=True, null=True)
     category = models.ForeignKey('Category', models.SET_NULL, blank=True, null=True)
     quantity_per_unit = models.CharField(max_length=20, blank=True, null=True, default=1)
     unit_price = models.FloatField(blank=True, null=True)
