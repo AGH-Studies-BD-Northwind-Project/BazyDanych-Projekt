@@ -1,10 +1,31 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About page</title>
+    <title>About Page - Northwind</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<h1>Project for subject databases. Implentation Northwind database using Django and PostgreSQL</h1>
+<center>
+<h1 class="display-3" style="background-color:#cb6161;color:#FFFF99;">Implementation of Northwind in Django for studies</h1>
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#55FF33;">
+    <a href="{% url 'home' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Northwind Application - HomePage</a>
+</nav>
+<h1 class="text-uppercase" class="text-center">Project for studies</h1>
+<p class="text-center">The aim of the project is to implement a system that performs basic operations
+in the sample Northwind database using python, framework django, postgreSQL, HTML and bootstrap framework .
+Northwind database is well-known version of the Microsoft Northwind sample database.</p>
+<h2 class="text-uppercase" class="text-center">Northwind database</h2>
+<p class="text-center">The Northwind database is an excellent schema for a
+small-business ERP, with categories, customers, region, territories,
+employees, shippers, suppliers, products and orders.</p>
+<h2 class="text-uppercase" class="text-center"><a href="https://github.com/AGH-Studies-BD-Northwind-Project/BazyDanych-Projekt/wiki">How to navigate in application</a></h2>
+<p class="text-center">Please read this documentation to find out what is implemented in application and how to navigate.</p>
+<h2 class="text-uppercase" class="text-center"><a href="https://github.com/AGH-Studies-BD-Northwind-Project/BazyDanych-Projekt#readme">How to run application</a></h2>
+<p class="text-center">Please execute following steps in readme file to launch app.</p>
 </body>
+</center>
 </html>
+

@@ -3,7 +3,7 @@
 ### Project for studies
 
 The aim of the project is to implement a system that performs basic operations
-in the sample Northwind database using python, framework django and postgreSQL.
+in the sample Northwind database using python, framework django, postgreSQL, HTML and bootstrap framemwork .
 Northwind database is well-known version of the Microsoft Northwind sample database.
 
 The Northwind database is an excellent schema for a
