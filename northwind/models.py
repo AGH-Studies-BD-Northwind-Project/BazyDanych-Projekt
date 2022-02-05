@@ -81,7 +81,7 @@ class Employee(models.Model):
         db_table = 'employees'
 
     def __str__(self):
-        return self.title + ' ' + self.firstname + ' ' + self.lastname
+        return self.title + ' ' + self.first_name + ' ' + self.last_name
 
 class OrderDetail(models.Model):
    # order_detail_id = models.AutoField(primary_key=True)
@@ -143,7 +143,7 @@ class Shipper(models.Model):
         db_table = 'shippers'
 
     def __str__(self):
-        return self.companyname
+        return self.company_name
 
 class Supplier(models.Model):
     supplier_id = models.AutoField(primary_key=True)

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product
+from .models import Product, OrderDetail
 from .forms import ProductCreate, SubmitSearchForm
 
 def products(request):
@@ -50,10 +50,14 @@ def delete_product(request, id):
     product_id = id
     try:
         product = Product.objects.get(pk=product_id)
+        orders = OrderDetail.objects.filter(product=product.product_id)
+        if not orders:
+            product.delete()
+        else:
+            Product.objects.filter(pk=product_id).update(discontinued=1)
+        return redirect('products')
     except Product.DoesNotExist:
         return redirect('products')
-    product.delete()
-    return redirect('products')
 
 
 
