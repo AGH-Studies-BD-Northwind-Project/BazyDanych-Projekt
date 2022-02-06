@@ -4,7 +4,7 @@ from django.forms import modelform_factory, NumberInput
 from .models import Product
 
 
-class ProductCreate(forms.ModelForm):
+class ProductCreateForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['product_id', 'product_name', 'supplier', 'category', 'quantity_per_unit', 'unit_price',
@@ -18,7 +18,7 @@ class ProductCreate(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super(ProductCreate, self).__init__(*args, **kwargs)
+        super(ProductCreateForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'form-control'
 

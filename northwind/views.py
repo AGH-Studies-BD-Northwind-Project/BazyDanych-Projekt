@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, OrderDetail
-from .forms import ProductCreate, SubmitSearchForm
+from .forms import ProductCreateForm, SubmitSearchForm
 
 def products(request):
     form = SubmitSearchForm(request.GET)
@@ -26,12 +26,12 @@ def deatil_product(request, id):
 
 def upload_product(request):
     if request.method == 'POST':
-        upload = ProductCreate(request.POST, request.FILES)
+        upload = ProductCreateForm(request.POST, request.FILES)
         if upload.is_valid():
             upload.save()
             return redirect('products')
     else:
-        upload = ProductCreate()
+        upload = ProductCreateForm()
     return render(request, 'northwind/product_upload_form.html', {'upload_form': upload})
 
 def update_product(request, id):
@@ -40,7 +40,7 @@ def update_product(request, id):
         product = Product.objects.get(pk=product_id)
     except Product.DoesNotExist:
         return redirect('products')
-    product_form = ProductCreate(request.POST or None, request.FILES or None, instance=product)
+    product_form = ProductCreateForm(request.POST or None, request.FILES or None, instance=product)
     if product_form.is_valid():
        product_form.save()
        return redirect('products')
