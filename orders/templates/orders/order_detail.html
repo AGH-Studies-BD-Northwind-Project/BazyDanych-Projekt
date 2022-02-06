@@ -1,10 +1,104 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Order details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#55FF33;">
+    <a href="{% url 'home' %}" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">HomePage</a>
+    <a href="{% url 'orders' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Return to Orders</a>
+</nav>
+<br>
+    <center>
+        <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Details of order number {{ order.order_id }}</h1>
+        <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
+            <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Employee</th>
+                <th scope="col">Order Date</th>
+                <th scope="col">Required Date</th>
+                <th scope="col">Shipped Date</th>
+                <th scope="col">Ship via</th>
+            </tr>
+            </thead>
+              <tbody>
+                <tr class="{{ order.shipped_date|yesno:'table-success,table-danger' }}">
+                    <td>{{ order.customer.company_name }}</td>
+                    <td>{{ order.employee.first_name }}  {{ order.employee.last_name }}</td>
+                    <td>{{ order.order_date }}</td>
+                    <td>{{ order.required_date }}</td>
+                    <td>{{ order.shipped_date }}</td>
+                    <td>{{ order.ship_via }}</td>
+                </tr>
+              </tbody>
+        </table>
+        <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Ordered products</h1>
+          <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
+            <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Cost</th>
+            </tr>
+            </thead>
+              <tbody>
+              {% load orders_helpers %}
+              {% for product in order.orderdetail_set.all %}
+                      <tr>
+                    <td>{{ product.product.product_name }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.unit_price|floatformat:2 }} zł</td>
+                    <td>{% multiply2 product.discount 100 %} %</td>
+                    <td>{% substract 1 product.discount as discountFactor %}
+                        {% multiply3 product.quantity product.unit_price discountFactor %} zł</td>
+                      </tr>
+              {% endfor %}
+              	    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Freight cost</td>
+                        <td>{{ order.freight|floatformat:2 }} zł</td>
+              	    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><b>Total cost</b></td>
+                        <td><b>{{ view.totalPrice|floatformat:2 }} zł</b></td>
+              	    </tr>
+              </tbody>
+        </table>
+        <h1 class="display-3" style="background-color:#000000;color:#FFFF99;">Delivery address</h1>
+          <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
+            <thead>
+            <tr>
+                <th scope="col">Recipient</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">Region</th>
+                <th scope="col">Postal Code</th>
+                <th scope="col">Country</th>
+            </tr>
+            </thead>
+              <tbody>
+              <tr>
+                    <td>{{ order.ship_name }}</td>
+                    <td>{{ order.ship_address }}</td>
+                    <td>{{ order.ship_city }}</td>
+                    <td>{{ order.ship_region }}</td>
+                    <td>{{ order.ship_postal_code }}</td>
+                    <td>{{ order.ship_country }}</td>
+              </tr>
+              </tbody>
+        </table>
+    </center>
 </body>
 </html>
