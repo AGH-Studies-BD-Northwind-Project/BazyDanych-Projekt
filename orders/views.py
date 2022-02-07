@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 
 from northwind.models import Order
+from orders.forms import OrderCreateForm
 
 
 def orders(request):
@@ -19,7 +20,14 @@ class DetailView(generic.DetailView):
         return total + self.get_object().freight
 
 def upload(request):
-    return render(request, "orders/order_add.html")
+    if request.method == 'POST':
+        upload = OrderCreateForm(request.POST)
+        if upload.is_valid():
+            upload.save()
+            return redirect('orders')
+    else:
+        upload = OrderCreateForm()
+    return render(request, "orders/order_upload.html", {'upload_form': upload})
 
 
 
