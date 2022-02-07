@@ -1,5 +1,6 @@
 from django import forms
-from django.forms import modelform_factory, NumberInput
+from django.core.exceptions import ValidationError
+from django.forms import NumberInput
 
 from .models import Product
 
@@ -25,7 +26,7 @@ class ProductCreateForm(forms.ModelForm):
     def clean_discontinued(self):
         d = self.cleaned_data.get("discontinued")
         if d != 0 and d != 1:
-            raise ValueError("Only accepted values are 0 or 1")
+            raise ValidationError("Only accepted values are 0 or 1")
         return d
 
 

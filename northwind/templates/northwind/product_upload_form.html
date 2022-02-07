@@ -19,8 +19,9 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
         <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#FFFF99;">
             {% for field in upload_form %}
             <tr>
-                <th>{{field.label}}</th>
+                <th>{{ field.label }}</th>
                 <td>{{ field }}</td>
+                <td>{{ field.errors }}</td>
             </tr>
             {% endfor %}
         </table>

@@ -38,6 +38,9 @@ class Customer(models.Model):
     class Meta:
         db_table = 'customers'
 
+    def __str__(self):
+        return self.company_name
+
 
 class Region(models.Model):
     region_id = models.AutoField(primary_key=True)
@@ -96,8 +99,8 @@ class OrderDetail(models.Model):
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
-    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
     order_date = models.DateField(blank=True, null=True)
     required_date = models.DateField(blank=True, null=True)
     shipped_date = models.DateField(blank=True, null=True)
@@ -116,14 +119,14 @@ class Order(models.Model):
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
     product_name = models.CharField(max_length=40)
-    supplier = models.ForeignKey('Supplier', models.SET_NULL, blank=True, null=True)
-    category = models.ForeignKey('Category', models.SET_NULL, blank=True, null=True)
-    quantity_per_unit = models.CharField(max_length=20, blank=True, null=True, default=1)
-    unit_price = models.FloatField(blank=True, null=True)
-    units_in_stock = models.SmallIntegerField(blank=True, null=True, default=0)
-    units_on_order = models.SmallIntegerField(blank=True, null=True, default=0)
-    reorder_level = models.SmallIntegerField(blank=True, null=True, default=0)
-    discontinued = models.IntegerField( default=0)
+    supplier = models.ForeignKey('Supplier', models.SET_NULL, null=True)
+    category = models.ForeignKey('Category', models.SET_NULL, null=True)
+    quantity_per_unit = models.CharField(max_length=20, null=True, default=1)
+    unit_price = models.FloatField(null=True)
+    units_in_stock = models.SmallIntegerField(null=True, default=0)
+    units_on_order = models.SmallIntegerField(null=True, default=0)
+    reorder_level = models.SmallIntegerField(null=True, default=0)
+    discontinued = models.IntegerField(default=0)
     picture = models.ImageField(blank=True, null=True)
 
     class Meta:
