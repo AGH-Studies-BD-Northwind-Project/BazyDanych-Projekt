@@ -14,12 +14,14 @@ class Category(models.Model):
     def __str__(self):
         return f"{self.category_name}"
 
+
 class CustomerDemographic(models.Model):
     customer_type_id = models.CharField(primary_key=True, max_length=30)
     customer_desc = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = 'customer_demographics'
+
 
 class Customer(models.Model):
     customer_id = models.CharField(primary_key=True, max_length=30)
@@ -49,6 +51,9 @@ class Region(models.Model):
     class Meta:
         db_table = 'region'
 
+    def __str__(self):
+       return f"{self.region_description}"
+
 
 class Territory(models.Model):
     territory_id = models.CharField(primary_key=True, max_length=20)
@@ -58,6 +63,10 @@ class Territory(models.Model):
     class Meta:
         db_table = 'territories'
         verbose_name_plural = "territories"
+
+    def __str__(self):
+        return f"{self.territory_description}"
+
 
 class Employee(models.Model):
     employee_id = models.AutoField(primary_key=True)
@@ -86,9 +95,10 @@ class Employee(models.Model):
     def __str__(self):
         return self.title + ' ' + self.first_name + ' ' + self.last_name
 
+
 class OrderDetail(models.Model):
-    order = models.ForeignKey('Order', on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', models.SET_NULL, null=True)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, db_column='order_id')
+    product = models.ForeignKey('Product', models.DO_NOTHING, default=1, db_column='product_id')
     unit_price = models.FloatField()
     quantity = models.SmallIntegerField()
     discount = models.FloatField()
@@ -96,6 +106,10 @@ class OrderDetail(models.Model):
     class Meta:
         db_table = 'order_details'
         unique_together = (('order', 'product'),)
+
+    def __str__(self):
+        return f"OrderDetail ID: {self.id}"
+
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
@@ -115,6 +129,10 @@ class Order(models.Model):
 
     class Meta:
         db_table = 'orders'
+
+    def __str__(self):
+        return f"Order ID: {self.order_id}"
+
 
 class Product(models.Model):
     product_id = models.AutoField(primary_key=True)
@@ -147,6 +165,7 @@ class Shipper(models.Model):
     def __str__(self):
         return self.company_name
 
+
 class Supplier(models.Model):
     supplier_id = models.AutoField(primary_key=True)
     company_name = models.CharField(max_length=40)
@@ -167,6 +186,7 @@ class Supplier(models.Model):
     def __str__(self):
         return f"{self.company_name}"
 
+
 class UsState(models.Model):
     state_id = models.AutoField(primary_key=True)
     state_name = models.CharField(max_length=100, blank=True, null=True)
@@ -175,3 +195,6 @@ class UsState(models.Model):
 
     class Meta:
         db_table = 'us_states'
+
+    def __str__(self):
+        return f"{self.state_name}"
