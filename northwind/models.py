@@ -98,7 +98,7 @@ class Employee(models.Model):
 
 class OrderDetail(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, db_column='order_id')
-    product = models.ForeignKey('Product', models.DO_NOTHING, default=1, db_column='product_id')
+    product = models.ForeignKey('Product', models.DO_NOTHING, db_column='product_id')
     unit_price = models.FloatField()
     quantity = models.SmallIntegerField()
     discount = models.FloatField()
@@ -185,16 +185,3 @@ class Supplier(models.Model):
 
     def __str__(self):
         return f"{self.company_name}"
-
-
-class UsState(models.Model):
-    state_id = models.AutoField(primary_key=True)
-    state_name = models.CharField(max_length=100, blank=True, null=True)
-    state_abbr = models.CharField(max_length=2, blank=True, null=True)
-    state_region = models.CharField(max_length=50, blank=True, null=True)
-
-    class Meta:
-        db_table = 'us_states'
-
-    def __str__(self):
-        return f"{self.state_name}"
