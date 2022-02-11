@@ -55,7 +55,7 @@ class OrderDetailForm(forms.ModelForm):
             visible.field.widget.attrs['class'] = 'form-control'
         for key in self.fields:
             self.fields[key].required = True
-        self.fields['product'].queryset = Product.objects.filter(discontinued=0)
+        self.fields['product'].queryset = Product.objects.filter(discontinued=0, units_in_stock__gt=0)
 
 
 class BaseOrderDetailFormSet(BaseInlineFormSet):

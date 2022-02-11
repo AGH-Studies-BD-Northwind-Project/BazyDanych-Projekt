@@ -59,10 +59,10 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
             e.preventDefault()
 
             let newForm = orderDetailsForm[0].cloneNode(true)
-            let formRegex = RegExp(`form-(\\d){1}-`,'g')
+            let formRegex = RegExp(`set-(\\d){1}-`,'g')
 
             formNum++
-            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+            newForm.innerHTML = newForm.innerHTML.replace(formRegex, `set-${formNum}-`)
             container.insertBefore(newForm, addButton)
 
             totalForms.setAttribute('value', `${formNum+1}`)

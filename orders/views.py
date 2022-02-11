@@ -35,9 +35,7 @@ class OrderAddView(TemplateView):
         order = Order()
         form_order = OrderCreateForm(data=self.request.POST)
         formset_prod = OrderDetailFormSet(data=self.request.POST, instance=order)
-        print(self.request.POST)
         if form_order.is_valid() and formset_prod.is_valid():
-            print(self.request.POST)
             a = form_order.save(commit=False)
             a.save()
             prods = formset_prod.save(commit=False)
